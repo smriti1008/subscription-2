@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Popup Form</title>
   <style>
-    body, html{
+    body, html {
       font-family: Arial, sans-serif;
       background: #f5f5f5;
       background-image: url('https://i.pinimg.com/originals/83/be/32/83be325e2d434d410339a95622877f70.jpg');
@@ -24,8 +24,8 @@
       border-radius: 10px; 
       padding: 20px 40px;
       font-size: 16px;
-      cursor: pointer; 
-      outline: none;
+      cursor: pointer; /* Add cursor style */
+      outline: none; /* Remove outline */
     }
 
     .center-btn:hover {
@@ -108,9 +108,25 @@
       z-index: 999;
     }
 
-    .thank-you-message {
-      font-size: 100px;
-      text-align: center;
+    /* Image Popup */
+    .image-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      z-index: 1000;
+      width: 400px;
+      height: 300px; /* Adjust height as needed */
+      overflow: hidden;
+    }
+
+    .image-popup img {
+      width: 100%;
+      height: auto; /* Maintain aspect ratio */
     }
   </style>
 </head>
@@ -123,14 +139,18 @@
 
   <!-- Popup Form -->
   <div class="popup-form" id="popupForm">
-    
+    <h2>Enter Your Information</h2>
     <form id="subscribeForm">
       <input type="text" placeholder="Enter your name" required>
       <input type="email" placeholder="Enter your email" required>
       <input type="tel" placeholder="Enter your phone number (e.g. 123-456-7890)" required>
       <button type="submit">Submit</button>
     </form>
-    <div class="thank-you-message" id="thankYouMessage" style="display:none;">👍</div>
+  </div>
+
+  <!-- Image Popup -->
+  <div class="image-popup" id="imagePopup">
+    <img src="thumbs-up.jpg" alt="Thank You Image">
   </div>
 
   <script>
@@ -142,15 +162,17 @@
     function closePopup() {
       document.getElementById('popupForm').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
+      document.getElementById('imagePopup').style.display = 'none';
     }
 
     // Handle form submission
     document.getElementById('subscribeForm').addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent the default form submission
 
-      // Hide the form fields and show the thumbs-up emoji
-      document.getElementById('subscribeForm').style.display = 'none';
-      document.getElementById('thankYouMessage').style.display = 'block';
+      // Hide the subscription form and display the image popup
+      document.getElementById('popupForm').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('imagePopup').style.display = 'block';
     });
   </script>
 </body>
