@@ -9,26 +9,23 @@
       font-family: Arial, sans-serif;
       background: #f5f5f5;
       background-image: url('https://i.pinimg.com/originals/83/be/32/83be325e2d434d410339a95622877f70.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 115vh;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+      background-size: cover;
+      background-position: center;
+      height: 115vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .center-btn {
-    
       background-color: #007BFF;
       color: white;
       border-radius: 10px; 
-            padding: 20px 40px;
-            font-size: 16px;
-            
-            cursor: pointer; /* Add cursor style */
-            outline: none; /* Remove outline */
-      
+      padding: 20px 40px;
+      font-size: 16px;
+      cursor: pointer; 
+      outline: none;
     }
 
     .center-btn:hover {
@@ -110,6 +107,11 @@
       background: rgba(0, 0, 0, 0.5);
       z-index: 999;
     }
+
+    .thank-you-message {
+      font-size: 100px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -121,13 +123,14 @@
 
   <!-- Popup Form -->
   <div class="popup-form" id="popupForm">
-    <h2>Enter Your Information</h2>
-    <form>
+    
+    <form id="subscribeForm">
       <input type="text" placeholder="Enter your name" required>
       <input type="email" placeholder="Enter your email" required>
       <input type="tel" placeholder="Enter your phone number (e.g. 123-456-7890)" required>
       <button type="submit">Submit</button>
     </form>
+    <div class="thank-you-message" id="thankYouMessage" style="display:none;">👍</div>
   </div>
 
   <script>
@@ -140,6 +143,15 @@
       document.getElementById('popupForm').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
     }
+
+    // Handle form submission
+    document.getElementById('subscribeForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Hide the form fields and show the thumbs-up emoji
+      document.getElementById('subscribeForm').style.display = 'none';
+      document.getElementById('thankYouMessage').style.display = 'block';
+    });
   </script>
 </body>
-</html
+</html>
